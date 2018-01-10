@@ -1,0 +1,178 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Payment.Tranzilla.Models.TranzillaConfiguration
+@using Nop.Web.Framework;
+
+@using (Html.BeginForm())
+{
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                Terminal
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Terminal)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adminTitle">
+                TranMode(optional)
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.TranMode)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adminTitle">
+                Currency
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Currency)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adminTitle">
+                Lang
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Lang)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adminTitle">
+                Payment Method Info
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.PaymentInfo)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Token Auth Masof
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.TokenAuth)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adminTitle">
+                AdditionalPercentFee (0.1 - 1 ) %
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AdditionalPercentFee)
+            </td>
+        </tr> 
+
+
+        <tr>
+            <td class="adminTitle">
+               Base Iframeurl 
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.BaseUrl)
+            </td>
+        </tr> 
+
+
+
+        <tr>
+            <td class="adminTitle">
+                Credit Type
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.CreditType)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adminTitle">
+                Max Payment
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.MaxPay)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adminTitle">
+                Payment Settings
+            </td>
+
+
+            <td class="adminData">
+
+                <div id="Payments">
+
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> From </th>
+                                <th> To </th>
+                                <th> Number Of Payments</th>
+                                <th> </th>
+                            </tr>
+                            
+
+                        </thead>
+
+                        <tbody>
+                            
+                            @foreach(var p in Model.GetPaymentsSettings())
+                            {
+                                <tr>
+                                    <td>
+                                        @p.StartsFrom
+                                    </td>
+                                    <td>
+                                        @p.UpTo
+                                    </td>
+                                    <td>
+                                        @p.Payments
+                                    </td> 
+                                    <td>
+                                        <a href="/plugins/tranzilla/RemovePaymentOption?id=@p.Id"> Remove </a>
+                                    </td>
+                                </tr> 
+                            }
+
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+
+
+
+
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+            </td>
+        </tr>
+    </table>
+
+}
+
+<h4> Add  Payment Option</h4>
+
+<form method="post" action="/plugins/tranzilla/updatePayments">
+
+    <input type="number" name="StartsFrom" id="from" placeholder="From" required />
+    <input type="number" name="UpTo" id="To" placeholder="To" required />
+    <input type="number" name="Payments" id="Payments" placeholder="Payments" required />
+    <button type="submit"> Add </button>
+</form>
+
+
+

@@ -1,0 +1,8 @@
+﻿Group: Payment Tranzilla Processor
+FriendlyName: Tranzilla  Payment
+SystemName: Payment.Tranzilla
+Version: 1.21
+SupportedVersions: 3.50
+Author: pashkovdenis@gmail.com
+DisplayOrder: 1
+FileName: Nop.Plugin.Payment.Tranzilla.dll

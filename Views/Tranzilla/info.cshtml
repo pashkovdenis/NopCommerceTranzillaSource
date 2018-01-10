@@ -1,0 +1,30 @@
+﻿<script>
+
+     $(document).ready(function () {
+         $("#opc-confirm_order").hide(); 
+         $("#payment-info-buttons-container").hide();  
+         $(".payment-info-next-step-button").hide();  
+         $.get("/plugins/tranzilla/paymentpage",
+            function (data) {
+                 $("#container").html(data);
+         }); 
+    });
+
+
+    // Clear cart here 
+    function clearCart()
+    {
+
+
+    } 
+
+
+</script>
+ 
+
+<!-- Container For Payment Page -->
+<div id="container">    @T("Payment.Loading") 
+</div>
+<!-- End Container --> 
+
+ 
